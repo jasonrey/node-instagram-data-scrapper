@@ -8,14 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jasonrey/instagram-scraper.git"
+    "url": "git+https://github.com/jasonrey/node-instagram-data-scraper.git"
   },
   "author": "JSON object <jsonobject@outlook.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jasonrey/instagram-scraper/issues"
+    "url": "https://github.com/jasonrey/node-instagram-data-scraper/issues"
   },
-  "homepage": "https://github.com/jasonrey/instagram-scraper#readme",
+  "homepage": "https://github.com/jasonrey/node-instagram-data-scraper#readme",
+  "bin": {
+    "scrap-instagram-tag": "./cli/scrapInstagramTag.js"
+  },
   "devDependencies": {
     "standard": "^10.0.3"
   },
