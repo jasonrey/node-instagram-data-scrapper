@@ -1,6 +1,6 @@
 {
   "name": "node-instagram-data-scraper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scrapes instagram data from public pages.",
   "main": "index.js",
   "scripts": {
