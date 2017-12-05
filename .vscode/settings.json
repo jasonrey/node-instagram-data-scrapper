@@ -1,0 +1,28 @@
+{
+  "editor.wordWrap": "on",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/ehthumbs.db": true,
+    "**/._*": true,
+    "**/.DS_Store": true,
+    "**/.Spotlight-V100": true,
+    "**/.Trashes": true,
+    "node_modules": true,
+    "bower_components": true,
+    "vendor": true,
+    "package-lock.json": true,
+    "yarn.lock": true
+  },
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "eslint.enable": false
+}

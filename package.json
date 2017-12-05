@@ -1,0 +1,28 @@
+{
+  "name": "node-instagram-data-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes instagram data from public pages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonrey/instagram-scraper.git"
+  },
+  "author": "JSON object <jsonobject@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonrey/instagram-scraper/issues"
+  },
+  "homepage": "https://github.com/jasonrey/instagram-scraper#readme",
+  "devDependencies": {
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.12.2",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
