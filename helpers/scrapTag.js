@@ -3,10 +3,10 @@ const queryid = require('../queryids').tags
 
 // "https://www.instagram.com/graphql/query/?query_id=...&variables={"tag_name":"break2191k","first":8,"after":"J0HWiZv5gAAAF0HWiTOnwAAAFiYA"}"
 
-const getPosts = async (tag, cursor) => {
+const scrap = async (tag, cursor) => {
   const data = {
     tag_name: tag,
-    first: 10
+    first: 100
   }
 
   if (cursor) {
@@ -24,7 +24,10 @@ const getPosts = async (tag, cursor) => {
 
   const pageInfo = result.data.hashtag.edge_hashtag_to_media.page_info
 
+  const uniqueid = {}
+
   const posts = result.data.hashtag.edge_hashtag_to_media.edges.map(item => {
+    uniqueid[item.node.id] = item
     return {
       postid: item.node.id,
       image: item.node.display_url,
@@ -41,13 +44,29 @@ const getPosts = async (tag, cursor) => {
     }
   })
 
-  if (pageInfo.has_next_page) {
-    const subposts = await getPosts(tag, pageInfo.end_cursor)
-
-    posts.push(...subposts)
+  return {
+    pageInfo,
+    posts
   }
+}
+
+module.exports = async (tag, max = 1000) => {
+  let stop = false
+  let cursor
+
+  const posts = []
+
+  do {
+    const result = await scrap(tag, cursor)
+
+    posts.push(...result.posts)
+
+    if ((max && posts.length >= max) || !result.pageInfo.has_next_page) {
+      stop = true
+    }
+
+    cursor = result.pageInfo.end_cursor
+  } while (!stop)
 
   return posts
 }
-
-module.exports = getPosts
