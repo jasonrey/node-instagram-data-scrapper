@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/jasonrey/node-instagram-data-scraper#readme",
   "bin": {
-    "scrap-instagram-tag": "./cli/scrapInstagramTag.js"
+    "scrap-instagram-tag": "./cli/scrapInstagramTag.js",
+    "scrap-instagram-post": "./cli/scrapInstagramPost.js",
+    "scrap-instagram-page": "./cli/scrapInstagramPage.js"
   },
   "devDependencies": {
     "standard": "^10.0.3"

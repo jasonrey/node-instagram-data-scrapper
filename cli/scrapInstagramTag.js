@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {version} = require('../package.json')
+const { version } = require('../package.json')
 const program = require('commander')
 
 let tag
@@ -13,14 +13,18 @@ program
   })
   .parse(process.argv)
 
-try {
-  if (!tag) {
-    throw new Error('Tag is required.')
+;(async () => {
+  try {
+    if (!tag) {
+      throw new Error('Tag is required.')
+    }
+
+    const { scrapTag } = require('../')
+
+    const result = scrapTag(tag)
+
+    console.log(JSON.stringify(result))
+  } catch (err) {
+    console.error(err.message)
   }
-
-  const {scrapTag} = require('../')
-
-  scrapTag(tag).then(res => console.log(JSON.stringify(res)))
-} catch (err) {
-  console.error(err.message)
-}
+})()
