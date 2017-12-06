@@ -3,6 +3,23 @@ const queryid = require('../queryids').tags
 
 // "https://www.instagram.com/graphql/query/?query_id=...&variables={"tag_name":"break2191k","first":8,"after":"J0HWiZv5gAAAF0HWiTOnwAAAFiYA"}"
 
+/**
+ * @typedef {Object} Post
+ * @property {string} postid
+ * @property {string} image
+ * @property {number} likes
+ * @property {number} comments
+ * @property {string} caption
+ * @property {boolean} isVideo
+ * @property {string} ownerId
+ * @property {string} shortcode
+ * @property {number} timestamp
+ * @property {number} views
+ *
+ * @param {string} link Instagram post URL to scrape the data.
+ * @param {string} cursor Last cursor to scrape from.
+ * @returns {Post}
+ */
 const scrap = async (tag, cursor) => {
   const data = {
     tag_name: tag,
@@ -50,6 +67,11 @@ const scrap = async (tag, cursor) => {
   }
 }
 
+/**
+ * @param {string} tag
+ * @param {number} max
+ * @returns {Post[]}
+ */
 module.exports = async (tag, max = 1000) => {
   let stop = false
   let cursor

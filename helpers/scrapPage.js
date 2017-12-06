@@ -1,5 +1,8 @@
 const scrapper = require('./scrapper')
 
+/**
+ * @param {string} link Instagram URL to scrape from.
+ */
 module.exports = async link => {
   let $
 

@@ -1,5 +1,22 @@
 const scrapPage = require('./scrapPage')
 
+/**
+ * @typedef {Object} Post
+ * @property {string} postid
+ * @property {string} image
+ * @property {number} likes
+ * @property {number} comments
+ * @property {string} caption
+ * @property {boolean} isVideo
+ * @property {string} ownerId
+ * @property {string} username
+ * @property {string} shortcode
+ * @property {number} timestamp
+ * @property {number} views
+ *
+ * @param {string} link Instagram post URL to scrape the data.
+ * @returns {Post}
+ */
 module.exports = async link => {
   const data = await scrapPage(link)
 
