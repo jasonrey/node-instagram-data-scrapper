@@ -1,5 +1,6 @@
+const scrapUser = require('./scrapUser')
 const request = require('request-promise-native')
-const queryid = require('../queryids').tags
+const queryid = require('../queryids').profile
 
 // "https://www.instagram.com/graphql/query/?query_id=...&variables={"tag_name":"break2191k","first":8,"after":"J0HWiZv5gAAAF0HWiTOnwAAAFiYA"}"
 
@@ -16,13 +17,13 @@ const queryid = require('../queryids').tags
  * @property {number} timestamp
  * @property {number} views
  *
- * @param {string} link Instagram post URL to scrape the data.
+ * @param {string} userid Instagram user id.
  * @param {string} cursor Last cursor to scrape from.
  * @returns {Post}
  */
-const scrap = async (tag, cursor) => {
+const scrap = async (userid, cursor) => {
   const data = {
-    tag_name: tag,
+    id: userid,
     first: 100
   }
 
@@ -39,13 +40,13 @@ const scrap = async (tag, cursor) => {
     json: true
   })
 
-  const pageInfo = result.data.hashtag.edge_hashtag_to_media.page_info
+  const pageInfo = result.data.user.edge_owner_to_timeline_media.page_info
 
-  const posts = result.data.hashtag.edge_hashtag_to_media.edges.map(item => {
+  const posts = result.data.user.edge_owner_to_timeline_media.edges.map(item => {
     return {
       postid: item.node.id,
       image: item.node.display_url,
-      likes: item.node.edge_liked_by.count,
+      likes: item.node.edge_media_preview_like.count,
       comments: item.node.edge_media_to_comment.count,
       caption: item.node.edge_media_to_caption.edges.length
         ? item.node.edge_media_to_caption.edges[0].node.text
@@ -65,18 +66,20 @@ const scrap = async (tag, cursor) => {
 }
 
 /**
- * @param {string} tag
- * @param {number} max
+ * @param {string} username Instagram username.
+ * @param {number} max Maximum number of posts to pull
  * @returns {Post[]}
  */
-module.exports = async (tag, max = 1000) => {
+module.exports = async (username, max = 1000) => {
   let stop = false
   let cursor
 
   const posts = []
 
+  const user = await scrapUser(username)
+
   do {
-    const result = await scrap(tag, cursor)
+    const result = await scrap(user.id, cursor)
 
     posts.push(...result.posts)
 

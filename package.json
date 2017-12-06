@@ -19,7 +19,9 @@
   "bin": {
     "scrap-instagram-tag": "./cli/scrapInstagramTag.js",
     "scrap-instagram-post": "./cli/scrapInstagramPost.js",
-    "scrap-instagram-page": "./cli/scrapInstagramPage.js"
+    "scrap-instagram-page": "./cli/scrapInstagramPage.js",
+    "scrap-instagram-user": "./cli/scrapInstagramUser.js",
+    "scrap-instagram-user-posts": "./cli/scrapInstagramUserPosts.js"
   },
   "devDependencies": {
     "standard": "^10.0.3"

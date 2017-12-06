@@ -7,8 +7,16 @@ module.exports = {
     return require('./helpers/scrapPage')
   },
 
-  get scrapPost() {
+  get scrapPost () {
     return require('./helpers/scrapPost')
+  },
+
+  get scrapUser () {
+    return require('./helpers/scrapUser')
+  },
+
+  get scrapUserPosts () {
+    return require('./helpers/scrapUserPosts')
   },
 
   get scrapper () {
